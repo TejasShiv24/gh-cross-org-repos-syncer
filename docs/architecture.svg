@@ -24,7 +24,7 @@
   <g font-size="13">
     <rect x="460" y="210" width="300" height="60" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
     <text x="610" y="234" text-anchor="middle" font-weight="600" fill="#0f172a">① update CLI (Node.js)</text>
-    <text x="610" y="252" text-anchor="middle" fill="#475569">prompts for source &amp; destination org/repo</text>
+    <text x="610" y="252" text-anchor="middle" fill="#475569">prompts for source &amp; destination repo URL</text>
 
     <line x1="610" y1="270" x2="610" y2="284" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
     <rect x="460" y="284" width="300" height="60" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
@@ -34,12 +34,12 @@
     <line x1="610" y1="344" x2="610" y2="358" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
     <rect x="460" y="358" width="300" height="60" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
     <text x="610" y="382" text-anchor="middle" font-weight="600" fill="#0f172a">③ gh repo view</text>
-    <text x="610" y="400" text-anchor="middle" fill="#475569">resolve default branch of both repos</text>
+    <text x="610" y="400" text-anchor="middle" fill="#475569">resolve branch name + emptiness of both repos</text>
 
     <line x1="610" y1="418" x2="610" y2="432" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
     <rect x="460" y="432" width="300" height="60" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
     <text x="610" y="456" text-anchor="middle" font-weight="600" fill="#0f172a">④ Temp workspace</text>
-    <text x="610" y="474" text-anchor="middle" fill="#475569">clone source + destination (shallow)</text>
+    <text x="610" y="474" text-anchor="middle" fill="#475569">clone source + destination (init dest if empty)</text>
 
     <line x1="610" y1="492" x2="610" y2="506" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
     <rect x="460" y="506" width="300" height="60" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
@@ -73,9 +73,10 @@
   <rect x="860" y="160" width="320" height="580" rx="14" fill="#ecfdf5" stroke="#047857" stroke-width="1.5" stroke-dasharray="6,4"/>
   <text x="1020" y="185" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1" fill="#047857">DESTINATION GITHUB ORG</text>
 
-  <rect x="890" y="220" width="260" height="70" rx="10" fill="#ffffff" stroke="#047857" stroke-width="1.5"/>
-  <text x="1020" y="250" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">Destination Repo</text>
-  <text x="1020" y="268" text-anchor="middle" font-size="13" fill="#475569">(default branch)</text>
+  <rect x="890" y="220" width="260" height="80" rx="10" fill="#ffffff" stroke="#047857" stroke-width="1.5"/>
+  <text x="1020" y="248" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">Destination Repo</text>
+  <text x="1020" y="266" text-anchor="middle" font-size="13" fill="#475569">(default branch)</text>
+  <text x="1020" y="282" text-anchor="middle" font-size="10.5" font-style="italic" fill="#0e7490">if empty: init commit + push first</text>
 
   <rect x="890" y="400" width="260" height="80" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
   <text x="1020" y="428" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">New Branch</text>
@@ -88,12 +89,12 @@
   <text x="1020" y="626" text-anchor="middle" font-size="12" fill="#065f46">ready for review</text>
 
   <!-- local machine -> destination repo (clone) -->
-  <line x1="762" y1="450" x2="888" y2="255" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="845" y="345" text-anchor="middle" font-size="11" fill="#334155">clone (shallow)</text>
+  <line x1="762" y1="450" x2="888" y2="260" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="845" y="345" text-anchor="middle" font-size="11" fill="#334155">clone (or init if empty)</text>
 
   <!-- destination repo -> new branch -->
-  <line x1="1020" y1="290" x2="1020" y2="400" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="1020" y="335" text-anchor="middle" font-size="11" fill="#334155">git checkout -b</text>
+  <line x1="1020" y1="300" x2="1020" y2="400" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="1020" y="340" text-anchor="middle" font-size="11" fill="#334155">git checkout -b</text>
 
   <!-- local machine -> new branch (push) -->
   <line x1="762" y1="600" x2="888" y2="450" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
