@@ -45,19 +45,17 @@ update
 
 The tool will ask for:
 
-* Source GitHub organization
-* Source repository
-* Destination GitHub organization
-* Destination repository
+* Source Repository URL, e.g. `https://github.com/<org>/<repo>` (a bare `org/repo` also works)
+* Destination Repository URL, in the same format
 
-If you leave the destination repository empty, the source repository name will be used automatically.
+For the destination, you can leave the repository part out (just give the org, or its URL) and the source repository name will be reused automatically.
 
 ## What happens during a sync
 
 After you provide the repository details, the tool will:
 
-1. Find the default branch of both repositories.
-2. Clone both repositories into a temporary directory.
+1. Resolve the default branch of both repositories, and detect whether the destination repository is empty.
+2. Clone both repositories into a temporary directory. If the destination repository has no commits yet, its default branch is initialized first (an empty commit is pushed to create it) so there is a base for the Pull Request.
 3. Create a new branch in the destination repository, named `updated-push-<dd/mm/yyyy>/<source-commit-sha>` so multiple syncs on the same day don't collide.
 4. Replace the destination repository contents with the source repository contents.
 5. Create a commit describing the synchronization.
@@ -68,6 +66,8 @@ After you provide the repository details, the tool will:
 ## Notes
 
 The synchronization replaces the destination repository's working tree with the contents of the source repository, excluding the Git metadata. This means the Pull Request should always be reviewed before merging.
+
+If the source repository has no commits, the sync fails immediately since there is nothing to copy. Only the destination repository is initialized automatically when empty.
 
 The tool does not store repository information between runs. Every execution is independent, so you can use it with different organizations and repositories each time.
 

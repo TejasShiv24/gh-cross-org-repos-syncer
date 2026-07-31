@@ -30,7 +30,7 @@ That idea became **`gh-cross-org-repos-syncer`**.
 Synchronization should never bypass code review. Instead of pushing directly to the destination branch, the tool creates a new branch named after the sync date and the source commit SHA (so multiple syncs on the same day never collide) and opens a Pull Request. This gives reviewers a clear diff to inspect before anything is merged.
 
 ### 2. No Configuration to Maintain
-There are no configuration files or static paths to manage. The tool interactively prompts for the source and destination repositories on each run, making it completely state-free and reusable across different organizations.
+There are no configuration files or static paths to manage. The tool interactively prompts for a source repository URL and a destination repository URL on each run (a bare `org/repo` works too), making it completely state-free and reusable across different organizations.
 
 ### 3. Everything Runs Locally
 The tool runs entirely on your local machine using Git and the GitHub CLI. There are no GitHub Actions minutes consumed, no workflow files to update, and no external infrastructure required.
@@ -40,6 +40,9 @@ Authentication is handled natively through the GitHub CLI. As long as you are si
 
 ### 5. Automatic Workspace Cleanup
 Repositories are cloned and processed inside an isolated temporary system directory. Once synchronization completes (or if an error occurs), the temporary directory is cleaned up automatically.
+
+### 6. Works Even Against a Brand-New Destination Repo
+Most sync approaches assume the destination already has commits. If the destination repository is empty, the tool initializes its default branch first, then still opens a Pull Request into it, rather than failing or silently pushing all the source content directly.
 
 ---
 
