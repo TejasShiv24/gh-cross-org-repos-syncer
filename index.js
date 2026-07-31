@@ -32,7 +32,7 @@ import chalk from "chalk";
  */
 function parseRepoInput(rawValue) {
   let value = rawValue.trim();
-  value = value.replace(/^https?:\/\/(www\.)?github\.com\//i, "");
+  value = value.replace(/^(?:https?:\/\/)?(www\.)?github\.com\//i, "");
   value = value.replace(/\.git$/i, "");
   value = value.replace(/^\/+|\/+$/g, "");
   const [org, repo] = value.split("/").filter(Boolean);
